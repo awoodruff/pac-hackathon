@@ -70,6 +70,7 @@ d3.json('counties.geojson', function (json) {
 
   d3.csv('county_level_data.csv', function (csv) {
     joinCSVtoMap(csv, 'county_name', 'NAME');
+    mapBy();
   });
 });
 
@@ -96,7 +97,6 @@ function joinCSVtoMap (csv, csvField, jsonField) {
     indexed[(states[c.properties.STATE].abbreviation + parseInt(c.properties.COUNTY)).toLowerCase()] = c;
   });
 
-console.log(indexed)
   csv.forEach(function (row) {
     if (indexed[(row.state_code + row.county_fips).toLowerCase()]) {
       indexed[(row.state_code + row.county_fips).toLowerCase()].properties.data = row;
